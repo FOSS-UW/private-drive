@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="./style/index.css">
+		<?php ?>
 	</head>
 	<body>
 		<img id="rubber-ducky" src="./resources/rub-duck.png">
