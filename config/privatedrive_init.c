@@ -27,12 +27,23 @@ int user_init() {
     user[strcspn(user, "\n")] = 0;
     pass[strcspn(pass, "\n")] = 0;
 
+    char usr_dir[72] = "../public/";
+    strcat(usr_dir, user);
+
+    int status = mkdir(usr_dir, S_IRUSR);
+    if (status == -1) {
+        return -1;
+    }
+
     FILE* fp = fopen(".user.rc", "w");
     if (fp == NULL) {
         return -1;
     }
     fprintf(fp, "%s %s\n", user, pass);
     fclose(fp);
+
+	printf("The root user has been initialized."
+		   " Enjoy your Private Drive.\n");
 
     return 0;
 }
