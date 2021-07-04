@@ -11,7 +11,29 @@ $password = $_POST['password'];
 
 if (empty($user) || empty($password)) {
     header('Location: index.php');
-    exit();
+    exit(1);
 }
 
-$test_string = 
+$test_string = $user . " " . $password . "\n";
+$users_file = fopen("../config/.user.rc", "r");
+
+session_start();
+
+if ($users_file == false) {
+    $_SESSION['login_err'] = "Private Drive has not been initialized with a root user.";
+    header('Location: index.php');
+    exit(1);
+}
+
+while (!feof($users_file)) {
+    if (fgets($users_file) == $test_string) {
+        $_SESSION['user'] = $user;
+        header('Location: home.php');
+        exit();
+    }
+}
+
+$_SESSION['login_err'] = "Incorrect user or password.";
+
+header('Location: index.php');
+exit(1);

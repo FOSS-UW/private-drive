@@ -2,7 +2,13 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="./style/index.css">
-		<?php ?>
+		<?php 
+			session_start();
+			if (isset($_SESSION['login_err'])) {
+				echo $_SESSION['login_err'];
+			}
+			session_destroy();
+		?>
 	</head>
 	<body>
 		<img id="rubber-ducky" src="./resources/rub-duck.png">

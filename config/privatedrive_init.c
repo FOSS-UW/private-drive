@@ -31,7 +31,7 @@ int user_init() {
     if (fp == NULL) {
         return -1;
     }
-    fprintf(fp, "root:\n\t%s %s\n", user, pass);
+    fprintf(fp, "%s %s\n", user, pass);
     fclose(fp);
 
     return 0;
