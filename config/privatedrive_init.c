@@ -27,7 +27,7 @@ int user_init() {
     user[strcspn(user, "\n")] = 0;
     pass[strcspn(pass, "\n")] = 0;
 
-    FILE* fp = fopen("user.rc", "w");
+    FILE* fp = fopen(".user.rc", "w");
     if (fp == NULL) {
         return -1;
     }

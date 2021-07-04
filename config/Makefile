@@ -3,4 +3,4 @@ privatedrive_init:
 
 clean:
 	$(RM) privatedrive_init
-	$(RM) user.rc
+	$(RM) .user.rc

@@ -1,0 +1,3 @@
+#exclude object files and user.rc from config directory
+config/*.o
+config/*.rc
