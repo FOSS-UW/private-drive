@@ -1,5 +1,7 @@
 <?php
 
+include 'hash.php';
+
 /* file has been accessed without hitting submit at index.php */
 if (empty($_POST['submit'])) {
     header('Location: index.php');
@@ -14,7 +16,7 @@ if (empty($user) || empty($password)) {
     exit(1);
 }
 
-$test_string = $user . " " . $password . "\n";
+$comp_str = djb2($user) . " " . djb2($password) . "\n";
 $users_file = fopen("../config/.user.rc", "r");
 
 session_start();
@@ -26,7 +28,7 @@ if ($users_file == false) {
 }
 
 while (!feof($users_file)) {
-    if (fgets($users_file) == $test_string) {
+    if (fgets($users_file) == $comp_str) {
         $_SESSION['user'] = $user;
         header('Location: home.php');
         exit();

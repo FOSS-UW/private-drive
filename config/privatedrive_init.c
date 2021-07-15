@@ -3,6 +3,9 @@
 #include <sys/stat.h>
 #include <string.h>
 
+//djb2
+unsigned long hash(unsigned char*);
+
 int user_init();
 //int comm_loop(); to be implemented
 
@@ -13,6 +16,17 @@ int main(void) {
     }
 
     exit(0);
+}
+
+unsigned long hash(unsigned char *str)
+{
+    unsigned long hash = 5381;
+    int c;
+
+    while (c = *str++)
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+    return hash;
 }
 
 int user_init() {
@@ -39,7 +53,7 @@ int user_init() {
     if (fp == NULL) {
         return -1;
     }
-    fprintf(fp, "%s %s\n", user, pass);
+    fprintf(fp, "%lu %lu\n", hash(user), hash(pass));
     fclose(fp);
 
 	printf("The root user has been initialized."
