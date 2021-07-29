@@ -13,6 +13,11 @@
         ?>
     </head>
     <body>
-
+	<div id="content">
+		<?php
+			require 'on.load.php';
+    			on_load($_SESSION['user']); 	    
+		?>
+	</div>
     </body>
 </html>
